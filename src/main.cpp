@@ -173,12 +173,11 @@ int main(void)
 			ImGui::Spacing();
 
 			static const char* current_item = scene_names[0];
-
-			if (ImGui::BeginCombo("##combo", current_item)) // The second parameter is the label previewed before opening the combo.
+			if (ImGui::BeginCombo("##combo", current_item))
 			{
 				for (int i = 0; i < IM_ARRAYSIZE(scene_names); i++)
 				{
-					bool is_selected = (current_item == scene_names[i]); // You can store your selection however you want, outside or inside your objects
+					bool is_selected = (current_item == scene_names[i]);
 					if (ImGui::Selectable(scene_names[i], is_selected))
 					{
 						current_item = scene_names[i];

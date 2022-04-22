@@ -56,7 +56,6 @@ const float* Window::GetBufferPtr()
 
 void Window::TakeScreenshot(const char* filename)
 {
-	std::string filename_png = std::string(filename) + ".png";
 	char* bitmap = new char[m_Width * m_Height * 3];
 	for (uint32_t i = 0; i < m_Width * m_Height; i++)
 	{
@@ -65,6 +64,7 @@ void Window::TakeScreenshot(const char* filename)
 		bitmap[i * 3 + 1] = (char) (color.y * 255);
 		bitmap[i * 3 + 2] = (char) (color.z * 255);
 	}
+	std::string filename_png = std::string(filename) + ".png";
 	stbi_write_png(filename_png.c_str(), m_Width, m_Height, 3, bitmap, m_Width * 3);
 	delete[] bitmap;
 }
