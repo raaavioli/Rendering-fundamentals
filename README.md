@@ -19,8 +19,8 @@ cd Rendering-fundamentals && mkdir build && cd build && cmake ..
 ```
 
 ## Creating Scenes
-To use the tool, one creates a class deriving from _Scene_ (see scene.h and example_scene.h).
-This class needs to be included into main.cpp, and added to the list of scenes at the top of the main()-function.
+To use the tool, one creates a class deriving from [_Scene_](https://github.com/raaavioli/Rendering-fundamentals/tree/main/labscenes) (see [scene.h](https://github.com/raaavioli/Rendering-fundamentals/tree/main/include/scene.h), [example_scene.h](https://github.com/raaavioli/Rendering-fundamentals/tree/main/labscenes/example_scene.h) and [example_scene.cpp](https://github.com/raaavioli/Rendering-fundamentals/tree/main/labscenes/example_scene.cpp)).
+The created Scene subclass needs to be included into main.cpp, and added to the list of scenes at the top of the main()-function.
 
 This way, all Scenes are selectable from the graphical settings-panel when running the program. The general approach 
 for solving a lab assignment is to create a Scene, and implement **Update**, **Draw** and **DrawGUI** to output imagery 
