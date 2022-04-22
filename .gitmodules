@@ -7,3 +7,7 @@
 [submodule "submodules/glad"]
 	path = submodules/glad
 	url = https://github.com/Dav1dde/glad.git
+[submodule "submodules/imgui"]
+	path = submodules/imgui
+	url = https://github.com/ocornut/imgui
+	branch = docking
