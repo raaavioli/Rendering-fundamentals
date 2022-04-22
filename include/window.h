@@ -12,8 +12,12 @@ public:
 	void PutPixel(uint32_t x, uint32_t y, glm::vec3 color);
 	void Clear(glm::vec3 color);
 
+	inline uint32_t GetWidth() { return m_Width; }
+	inline uint32_t GetHeight() { return m_Height; }
+
 	void TakeScreenshot(const char* filename);
 
+	// Used to draw the Backbuffer with OpenGL
 	const float* GetBufferPtr();
 
 private:

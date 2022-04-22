@@ -22,15 +22,20 @@ add_subdirectory(${SUBMODULE_DIR}/glfw)
 add_subdirectory(${SUBMODULE_DIR}/glm)
 add_subdirectory(${SUBMODULE_DIR}/glad)
 
+set(LABSCENES_DIR ${CMAKE_SOURCE_DIR}/labscenes)
+
 include_directories(
   ${CMAKE_SOURCE_DIR}/include
+  ${LABSCENES_DIR}
   ${GLFW_INCLUDE_DIRS}
   ${GLM_INCLUDE_DIR}
   ${GLAD_INCLUDE_DIRS}
 )
 
 file(GLOB SRCFILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+file(GLOB SCENEFILES ${LABSCENES_DIR}/*.cpp ${LABSCENES_DIR}/*.h)
+file(GLOB INCLUDEHEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 
-add_executable(${PROJECT_NAME} ${SRCFILES})
+add_executable(${PROJECT_NAME} ${SRCFILES} ${SCENEFILES} ${INCLUDEHEADERS})
 
 target_link_libraries(${PROJECT_NAME} glm glfw glad)

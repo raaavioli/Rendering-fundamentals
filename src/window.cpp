@@ -18,6 +18,7 @@ void Window::PutPixel(uint32_t x, uint32_t y, glm::vec3 color)
 	}
 	else
 	{
+		// Check this to help students if they accidentally write OOB.
 		std::cerr << "ERROR: Cannot write pixel (" << x << ", " << y << ")" << " on a window of resolution " << m_Width << "x" << m_Height << std::endl;
 		exit(EXIT_FAILURE);
 	}
