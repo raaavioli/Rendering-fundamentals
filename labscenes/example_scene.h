@@ -21,6 +21,7 @@ public:
 
 private:
 	glm::vec3 GetSphereColor(glm::vec2 UV);
+
 private:
 	Sphere m_Sphere;
 	glm::vec3 m_LightPos;
