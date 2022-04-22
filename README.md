@@ -18,6 +18,14 @@ git clone --recurse-submodules https://github.com/raaavioli/Rendering-fundamenta
 cd Rendering-fundamentals && mkdir build && cd build && cmake ..
 ```
 
+## Creating Scenes
+To use the tool, one creates a class deriving from _Scene_ (see scene.h and example_scene.h).
+This class needs to be included into main.cpp, and added to the list of scenes at the top of the main()-function.
+
+This way, all Scenes are selectable from the graphical settings-panel when running the program. The general approach 
+for solving a lab assignment is to create a Scene, and implement **Update**, **Draw** and **DrawGUI** to output imagery 
+in line with the assignment specification.
+
 ### Operating systems
 The repo has currently been verified to work on:
 - Windows 10 with Visual Studio 2022
