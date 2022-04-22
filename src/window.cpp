@@ -1,5 +1,10 @@
 #include "window.h"
 
+#include <string.h>
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image_write.h>
+
 Window::Window(uint32_t width, uint32_t height) : m_Width(width), m_Height(height)
 {
 	m_BackBuffer = new glm::vec3[width * height];
@@ -51,5 +56,14 @@ const float* Window::GetBufferPtr()
 
 void Window::TakeScreenshot(const char* filename)
 {
-	// TODO: Implement
+	std::string filename_png = std::string(filename) + ".png";
+	char* bitmap = new char[m_Width * m_Height * 3];
+	for (int i = 0; i < m_Width * m_Height; i++)
+	{
+		glm::vec3 color = glm::clamp(m_BackBuffer[i], glm::vec3(0), glm::vec3(1));
+		bitmap[i * 3 + 0] = color.x * 255;
+		bitmap[i * 3 + 1] = color.y * 255;
+		bitmap[i * 3 + 2] = color.z * 255;
+	}
+	stbi_write_png(filename_png.c_str(), m_Width, m_Height, 3, bitmap, m_Width * 3);
 }

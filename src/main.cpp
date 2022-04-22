@@ -160,8 +160,17 @@ int main(void)
 			}
 
 			ImGui::Text("FPS: %f, Time: %f (ms)", 1 / dt, dt * 1000.0f);
+			ImGui::Spacing();
 
-			ImGui::Spacing(); ImGui::Spacing();
+			static char screenshot_name[40] = "lab_screenshot";
+			ImGui::InputText(" ", screenshot_name, sizeof(screenshot_name));
+			ImGui::SameLine();
+			if (ImGui::Button("Take screenshot"))
+			{
+				appWindow.TakeScreenshot(screenshot_name);
+			}
+
+			ImGui::Spacing();
 
 			static const char* current_item = scene_names[0];
 
@@ -181,6 +190,7 @@ int main(void)
 				}
 				ImGui::EndCombo();
 			}
+			ImGui::Spacing();
 
 		}
 		if (active)
