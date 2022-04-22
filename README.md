@@ -3,8 +3,8 @@ This is a base repository for the rendering track of DH2323 Computer Graphics an
 
 The repository is meant to provide a simple API to be able to write pixels to a window. Ultimately, we want to make it 
 easy for both students and TAs in DH2323 to get started with the labs, so that more time can be put into what the 
-students are meant to learn. The purpose of the labs are to get familiar with the fundamentals of ray-tracing and 
-rasterization, while the purpose is not to learn about linking libraries and building boilerplate code to set up a 
+students are meant to learn. The purpose of the labs is to get familiar with the fundamentals of ray-tracing and 
+rasterization, the purpose is not to spend time on linking libraries and building boilerplate code to set up a 
 window or a graphics context.
 
 ## Dependencies
