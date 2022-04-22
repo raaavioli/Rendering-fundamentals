@@ -11,9 +11,12 @@ window or a graphics context.
 - CMake (Minimum version 3.2)
 
 ## Build
-> git clone --recurse-submodules https://github.com/raaavioli/Rendering-fundamentals
-> cd Rendering-fundamentals && mkdir build && cd build
-> cmake ..
+```
+git clone --recurse-submodules https://github.com/raaavioli/Rendering-fundamentals
+```
+```
+cd Rendering-fundamentals && mkdir build && cd build && cmake ..
+```
 
 ### Operating systems
 The repo has currently been verified to work on:
