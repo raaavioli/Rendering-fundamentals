@@ -11,6 +11,7 @@ public:
 
 	void PutPixel(uint32_t x, uint32_t y, glm::vec3 color);
 	void Clear(glm::vec3 color);
+	void Resize(uint32_t width, uint32_t height);
 
 	inline uint32_t GetWidth() { return m_Width; }
 	inline uint32_t GetHeight() { return m_Height; }

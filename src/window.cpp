@@ -35,6 +35,15 @@ void Window::Clear(glm::vec3 color)
 	}
 }
 
+void Window::Resize(uint32_t width, uint32_t height)
+{
+	if (m_BackBuffer)
+		delete[] m_BackBuffer;
+	m_BackBuffer = new glm::vec3[width * height];
+	m_Width = width;
+	m_Height = height;
+}
+
 const float* Window::GetBufferPtr()
 {
 	return (float*)m_BackBuffer;

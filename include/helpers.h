@@ -7,6 +7,8 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
+static const char* s_GLSLVersion = "#version 410";
+
 static const char* s_VertexShaderText = R"(
 #version 410
 

@@ -30,12 +30,21 @@ include_directories(
   ${GLFW_INCLUDE_DIRS}
   ${GLM_INCLUDE_DIR}
   ${GLAD_INCLUDE_DIRS}
+  ${SUBMODULE_DIR}/imgui
 )
 
 file(GLOB SRCFILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 file(GLOB SCENEFILES ${LABSCENES_DIR}/*.cpp ${LABSCENES_DIR}/*.h)
 file(GLOB INCLUDEHEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
+file(GLOB IMGUI 
+  ${SUBMODULE_DIR}/imgui/imgui.cpp 
+  ${SUBMODULE_DIR}/imgui/imgui_draw.cpp
+  ${SUBMODULE_DIR}/imgui/imgui_tables.cpp
+  ${SUBMODULE_DIR}/imgui/imgui_widgets.cpp
+  ${SUBMODULE_DIR}/imgui/backends/imgui_impl_opengl3.cpp 
+  ${SUBMODULE_DIR}/imgui/backends/imgui_impl_glfw.cpp
+)
 
-add_executable(${PROJECT_NAME} ${SRCFILES} ${SCENEFILES} ${INCLUDEHEADERS})
+add_executable(${PROJECT_NAME} ${SRCFILES} ${SCENEFILES} ${INCLUDEHEADERS} ${IMGUI})
 
 target_link_libraries(${PROJECT_NAME} glm glfw glad)

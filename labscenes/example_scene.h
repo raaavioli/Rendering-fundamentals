@@ -18,6 +18,9 @@ public:
 
 	void Update(float dt) override;
 	void Draw(Window& window) override;
+	void DrawGUI() override;
+
+	inline const char* GetName() override { return "ExampleScene"; };
 
 private:
 	glm::vec3 GetSphereColor(glm::vec2 UV);

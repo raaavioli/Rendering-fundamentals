@@ -17,11 +17,15 @@ void ExampleScene::Draw(Window& window)
 		for (uint32_t x = 0; x < window.GetWidth(); x++)
 		{
 			glm::vec2 UV = glm::vec2(x, y) / glm::vec2(window.GetWidth() - 1, window.GetHeight() - 1);
-			glm::vec3 color0 = GetSphereColor(glm::vec2(1 - UV.x, UV.y));
-			glm::vec3 color1 = GetSphereColor(glm::vec2(1 - UV.x, 1 - UV.y));
-			window.PutPixel(x, y, color0 + color1);
+			glm::vec3 color0 = GetSphereColor(glm::vec2(UV.x, UV.y));
+			window.PutPixel(x, y, color0);
 		}
 	}
+}
+
+void ExampleScene::DrawGUI()
+{
+	ImGui::DragFloat2("Light position", (float*) &m_LightPos, 0.1f, -10, 10);
 }
 
 glm::vec3 ExampleScene::GetSphereColor(glm::vec2 UV)
