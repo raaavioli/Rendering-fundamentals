@@ -37,7 +37,7 @@ void Lab1Scene::Draw(Window& window)
 	else
 	{
 		window.Clear(glm::vec3(0.0f));
-		DrawStarfield(window, window.GetWidth(), window.GetHeight(), window.GetHeight() / 2.0f, glm::vec3(1.0f));
+		DrawStarfield(window, (float) window.GetWidth(), (float) window.GetHeight(), window.GetHeight() / 2.0f, glm::vec3(1.0f));
 	}
 }
 

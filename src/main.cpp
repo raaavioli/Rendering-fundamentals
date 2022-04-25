@@ -15,12 +15,16 @@
 /* TODO: Include custom scenes here */
 #include <example_scene.h>
 #include <lab1_scene.h>
+#include <lab2_scene.h>
+#include <lab3_scene.h>
 
 int main(void)
 {
 	Scene* scenes[] = {
 		new ExampleScene(),
 		new Lab1Scene(),
+		new Lab2Scene(),
+		new Lab3Scene(),
 		/* TODO: Add new scenes here */
 	};
 
@@ -82,7 +86,7 @@ int main(void)
 	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, appWindow.GetWidth(), appWindow.GetHeight(), 0, GL_RGB, GL_FLOAT, appWindow.GetBufferPtr()));
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
 
-	uint32_t backbufferShader = CreateShader(s_VertexShaderText, s_FragmentShaderText);
+	uint32_t backbufferShader = CreateShaderProgram(s_VertexShaderText, s_FragmentShaderText);
 	uint32_t textureLocation = glGetUniformLocation(backbufferShader, "u_Texture");
 
 	// Create empty VAO since OpenGL requires a vertex array to be bound to call glDrawArrays
@@ -220,6 +224,13 @@ int main(void)
 		glfwSwapBuffers(glfwWindow);
 		glfwPollEvents();
 	}
+
+	for (int i = 0; i < scene_count; i++)
+		delete scenes[i];
+
+	glDeleteVertexArrays(1, &emptyVAO);
+	glDeleteProgram(backbufferShader);
+	glDeleteTextures(1, &backbufferTexture);
 
 	glfwDestroyWindow(glfwWindow);
 	glfwTerminate();

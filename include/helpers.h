@@ -109,7 +109,7 @@ void CheckProgramLinkError(uint32_t program, const char* type)
 * @param vsSrc GLSL vertex shader source code
 * @param fsSrc GLSL fragment shader source code
 */
-uint32_t CreateShader(const char* vsSrc, const char* fsSrc)
+uint32_t CreateShaderProgram(const char* vsSrc, const char* fsSrc)
 {
     uint32_t vertexShader = glCreateShader(GL_VERTEX_SHADER);
     GL_CHECK(glShaderSource(vertexShader, 1, &vsSrc, NULL));
