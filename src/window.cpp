@@ -49,7 +49,7 @@ void Window::Resize(uint32_t width, uint32_t height)
 	m_Height = height;
 }
 
-const float* Window::GetBufferPtr()
+const float* Window::GetBufferPtr() const
 {
 	return (float*)m_BackBuffer;
 }

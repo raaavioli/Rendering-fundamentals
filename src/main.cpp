@@ -76,15 +76,8 @@ int main(void)
 	const glm::vec3 CLEAR_COLOR = glm::vec3(0.0, 0.0, 1.0);
 	appWindow.Clear(CLEAR_COLOR);
 
-	uint32_t backbufferTexture;
-	GL_CHECK(glGenTextures(1, &backbufferTexture));
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, backbufferTexture));
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, appWindow.GetWidth(), appWindow.GetHeight(), 0, GL_RGB, GL_FLOAT, appWindow.GetBufferPtr()));
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
+	uint32_t backbufferTexture = 0;
+	ReallocateTexture(&backbufferTexture, appWindow);
 
 	uint32_t backbufferShader = CreateShaderProgram(s_VertexShaderText, s_FragmentShaderText);
 	uint32_t textureLocation = glGetUniformLocation(backbufferShader, "u_Texture");
@@ -152,16 +145,7 @@ int main(void)
 			if (ImGui::Button("Resize"))
 			{
 				appWindow.Resize(dims[0], dims[1]);
-				GL_CHECK(glDeleteTextures(1, &backbufferTexture));
-				backbufferTexture = 0;
-				GL_CHECK(glGenTextures(1, &backbufferTexture));
-				GL_CHECK(glBindTexture(GL_TEXTURE_2D, backbufferTexture));
-				GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
-				GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
-				GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-				GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
-				GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, appWindow.GetWidth(), appWindow.GetHeight(), 0, GL_RGB, GL_FLOAT, appWindow.GetBufferPtr()));
-				GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
+				ReallocateTexture(&backbufferTexture, appWindow);
 			}
 
 			ImGui::Text("FPS: %f, Time: %f (ms)", 1 / dt, dt * 1000.0f);

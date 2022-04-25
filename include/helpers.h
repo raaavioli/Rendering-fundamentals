@@ -7,6 +7,8 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
+#include "window.h"
+
 static const char* s_GLSLVersion = "#version 410";
 
 static const char* s_VertexShaderText = R"(
@@ -130,4 +132,19 @@ uint32_t CreateShaderProgram(const char* vsSrc, const char* fsSrc)
     glDeleteShader(fragmentShader);
 
     return shaderProgram;
+}
+
+void ReallocateTexture(uint32_t* texture, const Window& window)
+{
+    if (*texture)
+        GL_CHECK(glDeleteTextures(1, texture));
+    *texture = 0;
+    GL_CHECK(glGenTextures(1, texture));
+    GL_CHECK(glBindTexture(GL_TEXTURE_2D, *texture));
+    GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+    GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+    GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+    GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, window.GetWidth(), window.GetHeight(), 0, GL_RGB, GL_FLOAT, window.GetBufferPtr()));
+    GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
 }
