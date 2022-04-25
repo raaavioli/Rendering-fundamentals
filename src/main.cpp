@@ -58,6 +58,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	GL_CHECK(glClearColor(1.0, 0.0, 0.0, 1.0));
+	glfwSwapInterval(1);
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
