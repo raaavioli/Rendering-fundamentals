@@ -57,8 +57,7 @@ private:
 	void Interpolate(T a, T b, std::vector<T>& result);
 
 	/**
-	* Bilinearly interpolates color top_left, top_right, bottom_left and bottom_right over the window and draws the final color
-	* to the appropriate pixel of the window.
+	* Bilinearly interpolates colors top_left, top_right, bottom_left and bottom_right over all pixels of the window.
 	* 
 	* @param window The window to be drawn into
 	* @param top_left The color to appear in the top left corner of the window
@@ -71,9 +70,9 @@ private:
 	/**
 	* Initializes positions of all stars in m_Stars
 	*	- Initialize star positions in m_Stars such that:
-	*		> -1 <= x <= 1
-	*		> -1 <= y <= 1
-	*		>  0 <  z <= 1
+	*	1. -1 <= x <= 1
+	*	2. -1 <= y <= 1
+	*	3.  0 <  z <= 1
 	*	- Tip: Generate random values between 0 and 1 with float(rand()) / float(RAND_MAX).
 	* @param n The number of stars to be initialized
 	*/
@@ -82,14 +81,14 @@ private:
 	/**
 	* Draws the starfield in m_Stars using a pinhole camera projection from 3D world space to 2D screen space.
 	* The camera is positioned at the origin (0, 0, 0) and is looking in the negative z-direction.
-	* The center (0, 0, 0) of the world space is projected to the center of the screen, (W/2, H/2), 
+	* The center of the world space (0, 0, 0) is projected to the center of the screen (W/2, H/2), 
 	* for a screen with width W and height H.
 	*	- The projection from a world position (x, y, z) to a screen position (u, v) uses the following formula:
 	*		u = f * x / z + W / 2
 	*		v = f * y / z + H / 2
 	*	where f is the focal length of the camera. f = H/2 makes the vertical field of view 90 degrees.
 	* 
-	* Each star is projected and drawn onto the screen using their projected screen coordinates.
+	* Each star is projected and drawn onto the screen using its projected screen coordinates.
 	* 
 	* @param window The window to draw into
 	* @param W The width of the pinhole projection
