@@ -64,6 +64,7 @@ int main(void)
 	GL_CHECK(glClearColor(1.0, 0.0, 0.0, 1.0));
 	glfwSwapInterval(1);
 
+	// Initialize ImGui with docking and viewports
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -72,6 +73,7 @@ int main(void)
 	ImGui_ImplGlfw_InitForOpenGL(glfwWindow, true);
 	ImGui_ImplOpenGL3_Init(s_GLSLVersion);
 
+	// Allocate window with half resolution backbuffer
 	Window appWindow(WIDTH / 2, HEIGHT / 2);
 	const glm::vec3 CLEAR_COLOR = glm::vec3(0.0, 0.0, 1.0);
 	appWindow.Clear(CLEAR_COLOR);
@@ -107,7 +109,7 @@ int main(void)
 		// Draw scene to Backbuffer
 		scenes[current_scene]->Draw(appWindow);
 
-		// Draw Backbuffer to Screen
+		// Draw Backbuffer to default framebuffer (Screen)
 		glUseProgram(backbufferShader);
 		const uint32_t activeTexture = 0;
 		GL_CHECK(glActiveTexture(GL_TEXTURE0 + activeTexture));
@@ -123,6 +125,7 @@ int main(void)
 			GL_FLOAT,                   // pixel data type
 			appWindow.GetBufferPtr()    // data
 		));
+		// Drawing fullscreen quad with 2 triangles having 3 vertices each. See s_VertexShaderText in helpers.h.
 		GL_CHECK(glBindVertexArray(emptyVAO));
 		GL_CHECK(glUniform1i(textureLocation, activeTexture));
 		GL_CHECK(glDrawArrays(GL_TRIANGLES, 0, 6));
@@ -138,6 +141,7 @@ int main(void)
 		{
 			ImGui::Spacing();
 
+			// Backbuffer settings
 			ImGui::Text("Backbuffer: %dx%d", appWindow.GetWidth(), appWindow.GetHeight());
 			static int dims[2] = { (int)appWindow.GetWidth(), (int)appWindow.GetHeight() };
 			ImGui::SameLine(); ImGui::SliderInt2("", dims, 128, 1024);
@@ -148,19 +152,20 @@ int main(void)
 				ReallocateTexture(&backbufferTexture, appWindow);
 			}
 
+			// Performance metrics
 			ImGui::Text("FPS: %f, Time: %f (ms)", 1 / dt, dt * 1000.0f);
 			ImGui::Spacing();
 
+			// Taking screenshots
 			static char screenshot_name[40] = "lab_screenshot";
 			ImGui::InputText(" ", screenshot_name, sizeof(screenshot_name));
 			ImGui::SameLine();
 			if (ImGui::Button("Take screenshot"))
-			{
 				appWindow.TakeScreenshot(screenshot_name);
-			}
 
 			ImGui::Spacing();
 
+			// Scene selection
 			static const char* current_item = scene_names[0];
 			if (ImGui::BeginCombo("##combo", current_item))
 			{
@@ -188,6 +193,7 @@ int main(void)
 		}
 		ImGui::End();
 
+		// Draw scene specific GUI panel
 		ImGui::SetNextWindowDockID(dockspaceID, ImGuiCond_FirstUseEver);
 		if (ImGui::Begin("Scene settings"))
 		{
