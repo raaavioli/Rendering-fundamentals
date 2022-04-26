@@ -17,6 +17,27 @@ git clone --recurse-submodules https://github.com/raaavioli/Rendering-fundamenta
 ```
 cd Rendering-fundamentals && mkdir build && cd build && cmake ..
 ```
+### MacOS + Linux
+CMake will generate a Makefile.
+```
+make
+```
+Which produces a binary ```bin/DH2323_Rendering```.
+
+### Windows
+When building, CMake will generate a visual studio solution "DH2323\_Rendering.sln".
+
+- Find _DH2323\_Rendering_ in the Solution Explorer
+- Right click -> Set as Startup Project
+- Build -> Build Solution
+
+### Operating systems
+The repo has currently been verified to work on:
+- Windows 10 with Visual Studio 2022
+- MacOS Big Sur (M1-chip)
+
+More operating systems will be added as they are verified, and the goal is to support a wide range of operating systems so 
+that students can run from any environment.
 
 ## Creating Scenes
 To use the tool, one creates a class deriving from [_Scene_](https://github.com/raaavioli/Rendering-fundamentals/tree/main/labscenes) (see [scene.h](https://github.com/raaavioli/Rendering-fundamentals/tree/main/include/scene.h), [example_scene.h](https://github.com/raaavioli/Rendering-fundamentals/tree/main/labscenes/example_scene.h) and [example_scene.cpp](https://github.com/raaavioli/Rendering-fundamentals/tree/main/labscenes/example_scene.cpp)).
@@ -26,16 +47,5 @@ This way, all Scenes are selectable from the graphical settings-panel when runni
 for solving a lab assignment is to create a Scene, and implement **Update**, **Draw** and **DrawGUI** to output imagery 
 in line with the assignment specification.
 
-### Operating systems
-The repo has currently been verified to work on:
-- Windows 10 with Visual Studio 2022
-
-More operating systems will be added as they are verified, and the goal is to support a wide range of operating system so 
-that students can run from any environment.
-
-### Windows
-When building, CMake will generate a visual studio solution "DH2323\_Rendering.sln".
-
-- Find _DH2323\_Rendering_ in the Solution Explorer
-- Right click -> Set as Startup Project
-- Build -> Build Solution
+## Assignments
+Lab1: https://www.overleaf.com/read/kqpqdndnpcgd
