@@ -15,7 +15,7 @@ public:
 
 	void DrawGUI() override;
 
-	inline const char* GetName() override { return "Lab-3"; };
+	inline const char* GetName() override { return "Lab-3-Rasterization"; };
 
 private:
 

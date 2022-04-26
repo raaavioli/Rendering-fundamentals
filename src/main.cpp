@@ -110,6 +110,7 @@ int main(void)
 		scenes[current_scene]->Draw(appWindow);
 
 		// Draw Backbuffer to default framebuffer (Screen)
+		// Drawing fullscreen quad with 2 triangles having 3 vertices each. See s_VertexShaderText in helpers.h.
 		glUseProgram(backbufferShader);
 		const uint32_t activeTexture = 0;
 		GL_CHECK(glActiveTexture(GL_TEXTURE0 + activeTexture));
@@ -125,7 +126,6 @@ int main(void)
 			GL_FLOAT,                   // pixel data type
 			appWindow.GetBufferPtr()    // data
 		));
-		// Drawing fullscreen quad with 2 triangles having 3 vertices each. See s_VertexShaderText in helpers.h.
 		GL_CHECK(glBindVertexArray(emptyVAO));
 		GL_CHECK(glUniform1i(textureLocation, activeTexture));
 		GL_CHECK(glDrawArrays(GL_TRIANGLES, 0, 6));
