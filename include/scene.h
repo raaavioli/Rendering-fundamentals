@@ -6,6 +6,8 @@
 class Scene
 {
 public:
+	virtual ~Scene() {};
+
 	/**
 	* Update data in scene
 	* - Runs before Draw(Window& window)

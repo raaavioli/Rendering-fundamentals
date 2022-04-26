@@ -12,7 +12,7 @@
 static const char* s_GLSLVersion = "#version 410";
 
 static const char* s_VertexShaderText = R"(
-#version 410
+#version 410 core
 
 vec2 vertices[] = vec2[6](
   vec2(-1.0, -1.0),
@@ -22,26 +22,29 @@ vec2 vertices[] = vec2[6](
   vec2(-1.0, 1.0),
   vec2(-1.0, -1.0));
 
-layout(location = 0) out vec2 out_UV;
+layout(location = 0) out vec2 vsOut_UV;
 
 void main() {
   // Flip y to get (0,0) in top left corner
-  out_UV = vec2(1.0, -1.0) * (vertices[gl_VertexID] + 1.0f) / 2.0f; 
+  vsOut_UV = vec2(1.0, -1.0) * (vertices[gl_VertexID] + 1.0f) / 2.0f; 
   gl_Position = vec4(vertices[gl_VertexID], 0.0, 1.0);
 }
 )";
 
 static const char* s_FragmentShaderText = R"(
-#version 410
+#version 410 core
 
-layout(location = 0) in vec2 in_UV;
+// There's a bug in the GLSL compiler for Mac OSX, so the names need to be identical 
+// for vs output and fs input, despite layout(location=0). :(
+// See: https://stackoverflow.com/questions/24267069/opengl-mac-osx-vertex-shader-not-linking-to-fragment-shader
+layout(location = 0) in vec2 vsOut_UV;
 
 out vec4 out_Color;
 
 uniform sampler2D u_Texture;
 
 void main() {
-    out_Color = texture(u_Texture, in_UV);
+    out_Color = texture(u_Texture, vsOut_UV);
 }
 )";
 
