@@ -25,7 +25,10 @@ struct Camera {
 	glm::vec3 position;
 	float yaw;
 
-	glm::mat3 GetRotation();
+	/**
+	* Returns the rotation
+	*/
+	glm::mat3 GetRotationY();
 };
 
 #define PI 3.1415926535f
@@ -37,13 +40,12 @@ public:
 	void Draw(Window& window) override;
 
 	/**
-	* 
+	* Updates the m_Camera by polling Input.
+	*
+	* @param dt The delta time in seconds, giving the time since this Update-method was called last.
 	*/
 	void Update(float dt) override;
 
-	/**
-	* 
-	*/
 	void DrawGUI() override;
 
 	inline const char* GetName() override { return "Lab-2-Raytracing"; };
@@ -51,6 +53,26 @@ public:
 private:
 	/**
 	* Finds closest intersection of ray among triangles.
+	* - Any point p in a triangle is given by: 
+	*		p = v0 + ue1 + ve2, such that:
+	*		e1 and e2 are edge vectors originating at vertex v0, pointing towards v1 and v2 respectively
+	*		0	<= u
+	*		0	<= v
+	*		u+v	<= 1
+	* - Any point p along a ray is given by:
+	*		p = s + td, such that:
+	*		s is the starting point of the ray.
+	*		t is the direction of the ray
+	*		0	<  t, since we are only interested in triangles in positive d-direction.
+	* - We solve for coordinates (t, u, v) where:
+	*		v0 + ue1 + ve2 = s + td
+	* - We simplify the equation:
+	*		-td + ue1 + ve2 = s - v0
+	*		(-d e1 e2) * (t u v)^(T) = s - v0
+	*	And define 3x3 matrix A = (-d e1 e2), vector x = (t u v)^(T) and vector b = (s - v0).
+	* 
+	*	Finding the intersection thus implies the equation Ax = b for x.
+	*	This achieved through. inverse(A)*b = x.
 	* 
 	* @param ray The ray to intersect with triangles
 	* @param triangles The triangles to be intersected with ray
@@ -63,14 +85,14 @@ private:
 	* Calculates the direct light at intersection given a single light source and a set of triangles
 	* - Casts one shadow ray from the point of intersection to the light source to determine if the 
 	*	intersection is occluded with respect to the light.
-	* - Approximates light intensity I with the blinn-phong shading model:
-	*	I = ambient + (1 - shadow) * (diffuse * surface_color + specular * light_color)
+	* - Approximates light intensity (I) with the blinn-phong shading model:
+	*	I = ambient * surface_color + (1 - shadow) * (diffuse * surface_color + specular * light_color)
 	*	where 
-	*	ambient:	The approximate global illumination
-	*	shadow:		The amount of "shadowness" at the intersection
-	*	diffuse:	dot(N, L), where N is the normalized normal at intersection, and L is the direction to the light source
+	*	ambient:	The approximate global illumination (0-1)
+	*	shadow:		The amount of "shadowness" at the intersection (0-1)
+	*	diffuse:	dot(N, L), where N is the normalized normal at intersection, and L is the direction to the light source (0-1)
 	*	specular:	dot(R, V)^p or dot(N, H)^p, where R is the reflection vector, V is the view vector, N is the normal and H is L + V. 
-					p is an exponent dictating the intensity of the specular reflection.
+					p is an exponent dictating the intensity of the specular reflection. (0-1)
 	* 
 	* @param light A light source in the sceen to accumulate direct light from
 	* @param intersection The intersection point from which to accumulate direct light

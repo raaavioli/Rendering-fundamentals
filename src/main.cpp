@@ -11,6 +11,7 @@
 #include <helpers.h>
 #include <window.h>
 #include <scene.h>
+#include <input.h>
 
 /* TODO: Include custom scenes here */
 #include <example_scene.h>
@@ -56,6 +57,8 @@ int main(void)
 
 	glfwSetKeyCallback(glfwWindow, KeyCallback);
 	glfwMakeContextCurrent(glfwWindow);
+
+	Input::InitWindow(glfwWindow);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cerr << "ERROR: failed to initialize OpenGL context \n" << std::endl;
