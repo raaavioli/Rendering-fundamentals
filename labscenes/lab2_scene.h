@@ -28,7 +28,7 @@ struct Camera {
 	/**
 	* Returns the rotation
 	*/
-	glm::mat3 GetRotationY();
+	glm::mat3 GetRotationY() const;
 };
 
 #define PI 3.1415926535f

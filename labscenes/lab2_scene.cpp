@@ -97,7 +97,7 @@ glm::vec3 Lab2Scene::DirectLight(const Light& light, const Intersection& i, cons
 	return glm::vec3(1.0f);
 }
 
-glm::mat3 Camera::GetRotationY()
+glm::mat3 Camera::GetRotationY() const
 {
 	// TODO: To be implemented in Lab 2.1.4, see spec in lab1_scene.h
 	return glm::mat3(
