@@ -48,5 +48,5 @@ This way, all Scenes are selectable from the graphical settings-panel when runni
 for solving a lab assignment is to create a Scene, and implement **Update**, **Draw** and **DrawGUI** to output imagery 
 in line with the assignment specification.
 
-## Assignments
-Lab1: https://www.overleaf.com/read/kqpqdndnpcgd
+## Assignment
+Lab document: https://www.overleaf.com/read/kqpqdndnpcgd
