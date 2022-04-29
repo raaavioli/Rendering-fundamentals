@@ -137,6 +137,8 @@ private:
 	/**
 	* A Primitive Assembler
 	*	- "Assembles" the triangle and performs culling based on rasterizer_desc.cull_mode
+	* Example: 
+	*	- https://www.khronos.org/opengl/wiki/Primitive_Assembly
 	* @param rasterizer_desc A description stating how the triangle should be rasterized
 	* @param vs_out The three vertex shader outputs corresponding to the edge fragments of a triangle
 	* @returns true if the triangle is visible and should be passed to rasterization, false otherwise.
