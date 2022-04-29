@@ -209,10 +209,10 @@ int main(void)
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		GLFWwindow* context = glfwGetCurrentContext();
 		ImGui::UpdatePlatformWindows();
 		ImGui::RenderPlatformWindowsDefault();
-		glfwMakeContextCurrent(context);
+		// Return current context to main window after ImGui multi-viewport update.
+		glfwMakeContextCurrent(glfwWindow);
 
 		glfwSwapBuffers(glfwWindow);
 		glfwPollEvents();
