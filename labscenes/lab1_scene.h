@@ -24,7 +24,7 @@ public:
 	* The requirement for a particle's position stated in InitStarfield should be kept here as well.
 	* If a particle moves outside of its boundary, it wraps around to the start again.
 	* 
-	* @param dt The delta time in seconds, giving the time since this Update-method was called last.
+	* @param dt The delta time in seconds since this Update-method was called last.
 	*/
 	void Update(float dt) override;
 

@@ -25,15 +25,16 @@ make
 Which produces a binary ```bin/DH2323_Rendering```.
 
 ### Windows
-When building, CMake will generate a visual studio solution ```DH2323\_Rendering.sln```.
+When building, CMake will generate a visual studio solution ```DH2323_Rendering.sln```.
 
+- Open ```build/DH2323_Rendering.sln```
 - Find _DH2323\_Rendering_ in the Solution Explorer
 - Right click -> Set as Startup Project
 - Build -> Build Solution
 
 ### Operating systems
 The repo has currently been verified to work on:
-- Windows 10 with Visual Studio 2022
+- Windows 10 with VS2022 and VS2019
 - MacOS Big Sur (M1-chip)
 
 More operating systems will be added as they are verified, and the goal is to support a wide range of operating systems so 
@@ -47,5 +48,5 @@ This way, all Scenes are selectable from the graphical settings-panel when runni
 for solving a lab assignment is to create a Scene, and implement **Update**, **Draw** and **DrawGUI** to output imagery 
 in line with the assignment specification.
 
-## Assignments
-Lab1: https://www.overleaf.com/read/kqpqdndnpcgd
+## Assignment
+Lab document: https://www.overleaf.com/read/kqpqdndnpcgd
