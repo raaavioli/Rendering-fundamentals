@@ -226,11 +226,12 @@ int main(void)
 	glDeleteTextures(1, &backbufferTexture);
 
 	glfwDestroyWindow(glfwWindow);
-	glfwTerminate();
 
 	ImGui::DestroyPlatformWindows();
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
+
+	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }
