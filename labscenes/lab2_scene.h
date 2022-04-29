@@ -26,7 +26,8 @@ struct Camera {
 	float yaw;
 
 	/**
-	* Returns the rotation
+	* Camera rotation matrix around the Y-axis.
+	* @returns the rotation in Y determined by the camera's yaw angle.
 	*/
 	glm::mat3 GetRotationY() const;
 };
@@ -41,8 +42,7 @@ public:
 
 	/**
 	* Updates the m_Camera by polling Input.
-	*
-	* @param dt The delta time in seconds, giving the time since this Update-method was called last.
+	* @param dt The delta time in seconds since this Update-method was called last.
 	*/
 	void Update(float dt) override;
 
