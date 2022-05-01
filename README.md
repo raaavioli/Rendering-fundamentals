@@ -47,6 +47,7 @@ When building, CMake will generate a visual studio solution ```DH2323_Rendering.
 The repo has currently been verified to work on:
 - Windows 10 with VS2022 and VS2019
 - MacOS Big Sur (M1-chip)
+- Ubuntu 20.04.3 LTS 
 
 More operating systems will be added as they are verified, and the goal is to support a wide range of operating systems so 
 that students can run from any environment.
