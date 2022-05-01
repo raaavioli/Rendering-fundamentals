@@ -66,7 +66,6 @@ int main(void)
 		std::cerr << "ERROR: failed to initialize OpenGL context \n" << std::endl;
 		exit(EXIT_FAILURE);
 	}
-	GL_CHECK(glClearColor(1.0, 0.0, 0.0, 1.0));
 	glfwSwapInterval(1);
 
 	// Initialize ImGui with docking and viewports
@@ -82,6 +81,7 @@ int main(void)
 	Window appWindow(WIDTH / 2, HEIGHT / 2);
 	const glm::vec3 CLEAR_COLOR = glm::vec3(0.0, 0.0, 1.0);
 	appWindow.Clear(CLEAR_COLOR);
+	GL_CHECK(glClearColor(CLEAR_COLOR.r, CLEAR_COLOR.g, CLEAR_COLOR.b, 1.0));
 
 	uint32_t backbufferTexture = 0;
 	ReallocateTexture(&backbufferTexture, appWindow);
@@ -160,8 +160,16 @@ int main(void)
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 		ImGui::Begin("Viewport");
-		ImVec2 content_avail = ImGui::GetContentRegionAvail();
-		ImGui::Image((ImTextureID)backbufferTexture, content_avail);
+		{
+			// Copy uint32_t (32bit) to ImTextureID (void*) (64bit typically, but may be 32)
+			// Not doing this causes ugly warning: `cast to pointer from integer of different size`
+			// ImTextureID should never be smaller than 32bit, so this is fine.
+			ImTextureID im_tex_id = nullptr;
+			memcpy(&im_tex_id, &backbufferTexture, sizeof(backbufferTexture));
+
+			// Draw backbuffer image as ImGui image.
+			ImGui::Image(im_tex_id, ImGui::GetContentRegionAvail());
+		}
 		ImGui::End(); // Viewport
 		ImGui::PopStyleVar();
 
@@ -228,9 +236,10 @@ int main(void)
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+		
 		ImGui::UpdatePlatformWindows();
 		ImGui::RenderPlatformWindowsDefault();
+
 		// Return current context to main window after ImGui multi-viewport update.
 		glfwMakeContextCurrent(glfwWindow);
 
