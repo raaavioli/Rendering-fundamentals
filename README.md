@@ -17,12 +17,22 @@ git clone --recurse-submodules https://github.com/raaavioli/Rendering-fundamenta
 ```
 cd Rendering-fundamentals && mkdir build && cd build && cmake ..
 ```
-### MacOS + Linux
+### MacOS
 CMake will generate a Makefile.
 ```
 make
 ```
 Which produces a binary ```bin/DH2323_Rendering```.
+
+### Linux
+If you miss any dependencies for your system see:
+https://www.glfw.org/docs/3.3/compile.html#compile_cmake
+
+For Debian + Ubuntu:
+```
+sudo apt install xorg-dev
+make
+```
 
 ### Windows
 When building, CMake will generate a visual studio solution ```DH2323_Rendering.sln```.
