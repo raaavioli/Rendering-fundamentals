@@ -33,6 +33,7 @@ For Debian + Ubuntu:
 sudo apt install xorg-dev
 make
 ```
+Which produces a binary ```bin/DH2323_Rendering```.
 
 ### Windows
 When building, CMake will generate a visual studio solution ```DH2323_Rendering.sln```.
