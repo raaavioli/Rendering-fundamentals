@@ -3,47 +3,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-/**
-* Singleton class for receiving input from a window
-*/
-class Input
-{
-public:
-	// Disable copy/move
-	Input(const Input&) = delete;
-	Input(Input&&) = delete;
-	Input& operator=(const Input&) = delete;
-	Input& operator=(Input&&) = delete;
 
-	inline static void InitWindow(GLFWwindow* window) {
-		if (!Instance().m_Window)
-			Instance().m_Window = window;
-	};
-
-	enum class Key : int;
-	inline static bool IsKeyPressed(Key key) { return glfwGetKey(Instance().m_Window, (int)key); };
-
-	enum class Button : int;
-	inline static bool IsMousePressed(Button button) { return glfwGetMouseButton(Instance().m_Window, (int)button); };
-
-	inline static void GetCursor(glm::dvec2& position) { glfwGetCursorPos(Instance().m_Window, &position.x, &position.y); };
-
-private:
-	// Don't allow public instantiation
-	Input() = default;
-	~Input() = default;
-
-	static Input& Input::Instance()
-	{
-		static Input i;
-		return i;
-	}
-
-private:
-	GLFWwindow* m_Window;
-};
-
-enum class Input::Key : int 
+enum class Key : int
 {
 	A = GLFW_KEY_A,
 	B = GLFW_KEY_B,
@@ -83,11 +44,47 @@ enum class Input::Key : int
 	// Add more as needed
 };
 
-enum class Input::Button : int
+enum class Button : int
 {
 	LEFT = GLFW_MOUSE_BUTTON_LEFT,
 	RIGHT = GLFW_MOUSE_BUTTON_RIGHT,
 	MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE,
 	// Add more as needed
+};
+
+/**
+* Singleton class for receiving input from a window
+*/
+class Input
+{
+public:
+	// Disable copy/move
+	Input(const Input&) = delete;
+	Input(Input&&) = delete;
+	Input& operator=(const Input&) = delete;
+	Input& operator=(Input&&) = delete;
+
+	inline static void InitWindow(GLFWwindow* window) {
+		if (!Instance().m_Window)
+			Instance().m_Window = window;
+	};
+
+	static bool IsKeyPressed(Key key) { return glfwGetKey(Instance().m_Window, (int)key); };
+	static bool IsMousePressed(Button button) { return glfwGetMouseButton(Instance().m_Window, (int)button); };
+	static void GetCursor(glm::dvec2& position) { glfwGetCursorPos(Instance().m_Window, &position.x, &position.y); };
+
+private:
+	// Don't allow public instantiation
+	Input() = default;
+	~Input() = default;
+
+	static Input& Input::Instance()
+	{
+		static Input i;
+		return i;
+	}
+
+private:
+	GLFWwindow* m_Window;
 };
 

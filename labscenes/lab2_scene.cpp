@@ -51,7 +51,7 @@ void Lab2Scene::Update(float dt)
 	// TODO: To be implemented in Lab 2.1.4, see spec in lab1_scene.h
 	// Tips: See input.h
 	// Example:
-	//	if (Input::IsKeyPressed(Input::Key::A)) 
+	//	if (Input::IsKeyPressed(Key::A)) 
 	//	{
 	//		// Move camera left
 	//	}
