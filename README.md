@@ -36,7 +36,7 @@ make
 Which produces a binary ```bin/DH2323_Rendering```.
 
 ### Windows
-When building, CMake will generate a visual studio solution ```DH2323_Rendering.sln```.
+When building, CMake will generate a visual studio solution ```DH2323_Rendering.sln``` in the current ```build``` directory.
 
 - Open ```build/DH2323_Rendering.sln```
 - Find _DH2323\_Rendering_ in the Solution Explorer
