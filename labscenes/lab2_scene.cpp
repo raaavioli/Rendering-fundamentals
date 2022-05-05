@@ -2,7 +2,7 @@
 
 #include "input.h"
 
-Lab2Scene::Lab2Scene() : m_RenderNext(true), m_SingleFrameMode(true)
+Lab2Scene::Lab2Scene() : m_RenderNext(true), m_SingleFrameMode(false)
 {
 	LoadTestModel(m_Model);
 	m_Light.position = glm::vec3(0.0f, 0.0f, 0.0);
