@@ -78,7 +78,7 @@ private:
 	Input() = default;
 	~Input() = default;
 
-	static Input& Input::Instance()
+	static Input& Instance()
 	{
 		static Input i;
 		return i;
