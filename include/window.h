@@ -13,8 +13,8 @@ public:
 	void Clear(glm::vec3 color);
 	void Resize(uint32_t width, uint32_t height);
 
-	inline uint32_t GetWidth() const { return m_Width; }
-	inline uint32_t GetHeight() const { return m_Height; }
+	inline int GetWidth() const { return (int)m_Width; }
+	inline int GetHeight() const { return (int)m_Height; }
 
 	void TakeScreenshot(const char* filename);
 

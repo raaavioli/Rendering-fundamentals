@@ -16,9 +16,9 @@ void Lab2Scene::Draw(Window& window)
 	if (!m_RenderNext) return;
 	m_RenderNext = false;
 
-	for (uint32_t y = 0; y < window.GetHeight(); ++y)
+	for (int y = 0; y < window.GetHeight(); ++y)
 	{
-		for (uint32_t x = 0; x < window.GetWidth(); ++x)
+		for (int x = 0; x < window.GetWidth(); ++x)
 		{
 			// TODO: To be implemented in Lab 2.1.1 (direction)
 			// TODO: To be implemented in Lab 2.1.4 (rotation)
@@ -40,7 +40,7 @@ void Lab2Scene::Draw(Window& window)
 			}
 			else 
 			{
-				window.PutPixel(x, y, m_Light.color);
+				window.PutPixel(x, y, glm::vec3(0.5, 0.73, 0.93));
 			}
 		}
 	}

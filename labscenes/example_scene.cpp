@@ -12,9 +12,9 @@ void ExampleScene::Update(float dt)
 
 void ExampleScene::Draw(Window& window)
 {
-	for (uint32_t y = 0; y < window.GetHeight(); y++)
+	for (int y = 0; y < window.GetHeight(); y++)
 	{
-		for (uint32_t x = 0; x < window.GetWidth(); x++)
+		for (int x = 0; x < window.GetWidth(); x++)
 		{
 			glm::vec2 UV = glm::vec2(x, y) / glm::vec2(window.GetWidth() - 1, window.GetHeight() - 1);
 			glm::vec3 color0 = GetSphereColor(glm::vec2(UV.x, UV.y));

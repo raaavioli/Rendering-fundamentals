@@ -16,15 +16,15 @@ Lab3Scene::Lab3Scene()
 void Lab3Scene::Draw(Window& window)
 {
 	// Resize depth buffer if window resolution changed.
-	const uint32_t WIDTH = window.GetWidth();
-	const uint32_t HEIGHT = window.GetHeight();
+	const int WIDTH = window.GetWidth();
+	const int HEIGHT = window.GetHeight();
 	if (m_DepthBuffer.size() != (WIDTH * HEIGHT))
 		m_DepthBuffer.resize(WIDTH * HEIGHT);
 
 	// Clear window and depth buffer
 	window.Clear(glm::vec3(0));
-	for (uint32_t y = 0; y < HEIGHT; y++)
-		for (uint32_t x = 0; x < WIDTH; x++)
+	for (int y = 0; y < HEIGHT; y++)
+		for (int x = 0; x < WIDTH; x++)
 			m_DepthBuffer[y * WIDTH + x] = 0.0f;
 
 	// TODO: To be implemented in Lab 3.1.1, see spec in lab3_scene.h
